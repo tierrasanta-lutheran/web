@@ -1,3 +1,5 @@
+console.log(">>> global.js EXECUTED <<<");
+
 function window.sayHello() {
   alert("hello");
 }
