@@ -11,3 +11,6 @@ function AddGlobalBlurb(event, text) {
         // Append it wherever you want — here we add it at the bottom
         event.appendChild(container);
 }
+
+console.log("global.js loaded", window.sayHello);
+
