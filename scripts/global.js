@@ -1,8 +1,8 @@
-function sayHello() {
+function window.sayHello() {
   alert("hello");
 }
 
-function AddGlobalBlurb(event, text) {
+function window.AddGlobalBlurb(event, text) {
         const container = document.createElement("div");
         container.className = "recurrence-date";
   const textToInsert = text ?? "Hey!  This is injected text";
