@@ -14,8 +14,8 @@
 				"order": 1,
 				"description": "Donna and the head astronaut leading the assembly.",
 				"display": {
-					"width": "400px",
-					"height": "400px"
+					"width": "auto",
+					"height": "auto"
 				}
 			},
 			{
