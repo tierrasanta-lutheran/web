@@ -119,5 +119,80 @@
 				"description": "Olivia helps run an outdoors activity."
 			}
 		]
+	},
+	{
+		"slug": "rummage-sale-crew",
+		"display": {
+			"numColumns": 3
+		},
+		"images": [
+			{
+				"src": "https://scontent-lax7-1.xx.fbcdn.net/v/t39.30808-6/481276158_1045279904295760_8062954099042546527_n.jpg?stp=dst-jpg_s206x206_tt6&_nc_cat=101&ccb=1-7&_nc_sid=a934a8&_nc_ohc=lRY_yxjAQNoQ7kNvwGYZ4lG&_nc_oc=AdpJ5CwHPjfkn2NXex4iiCEy5tqmU3QnSt8rl3YtW4a1cxe8piPeMnNRJ2KkWSLaf6Y4xMZIILorCwXJX2lLCC3y&_nc_zt=23&_nc_ht=scontent-lax7-1.xx&_nc_gid=to5hdTaPGIQkNg0dApSZrg&_nc_ss=7a3a8&oh=00_Af1mZIKFTl25oBYnWRtLrWAbPekDBpsVPfn32F_Mvr3_Rw&oe=69DD4383",
+				"master": true
+			},
+			{
+				"src": "https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-6/481027667_1045936347563449_3715057747596002398_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s206x206_tt6&_nc_cat=103&ccb=1-7&_nc_sid=a934a8&_nc_ohc=UoR9XKVc-hEQ7kNvwEtOU_Z&_nc_oc=AdqcCNjgrgSsJ3QFC2li92WSAoLeMNpEF9otNxz_unPs2feBESR_-cV_LquQDHKph9L7PhUeKROrbzq0l67Miwi3&_nc_zt=23&_nc_ht=scontent-lax3-2.xx&_nc_gid=Fo7gQtSpcBLmI_7duRM3pg&_nc_ss=7a3a8&oh=00_Af2jq2-HUhQkk1GbBdI2h3noEowrcZO6UxYlTT6ZBapP3A&oe=69DD4F14",
+				"order": 1,
+				"description": "Ann and Brenda getting ready for Christmas!",
+				"display": {
+					"width": "auto",
+					"height": "auto"
+				}
+			},
+			{
+				"src": "https://scontent-lax3-1.xx.fbcdn.net/v/t39.30808-6/481983374_1045936257563458_3777894782872245032_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s206x206_tt6&_nc_cat=104&ccb=1-7&_nc_sid=a934a8&_nc_ohc=CM1KocCK46IQ7kNvwE_synD&_nc_oc=AdpyQMYS7HGwl5AuaJ1H8326MakiqvJ4nYwN-Ebmxz4a4W8ptrt0iPcJvxxB6bqTgZE49yCGpH6mssu-zZqAza9z&_nc_zt=23&_nc_ht=scontent-lax3-1.xx&_nc_gid=Fo7gQtSpcBLmI_7duRM3pg&_nc_ss=7a3a8&oh=00_Af3amj1KWehPvBXoBZv3lvA74jB9f1i41mWKYNCcudi5tQ&oe=69DD42B1",
+				"order": 1,
+				"description": "Ginny finds a stein mug!",
+				"display": {
+					"width": "auto",
+					"height": "auto"
+				}
+			},
+			{
+				"src": "https://scontent-lax7-1.xx.fbcdn.net/v/t39.30808-6/481273807_1045936260896791_6767552254209934740_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s206x206_tt6&_nc_cat=105&ccb=1-7&_nc_sid=a934a8&_nc_ohc=VU4CYZEIltwQ7kNvwGHx0W7&_nc_oc=Adrzu41tNstK36q9iIztLO5GcxMh7zvNkTtf-kM_8KVxjuv8YPBb9uFdjJM7zqoR0eX9yh16Cln9U-8-ehtR_Tx7&_nc_zt=23&_nc_ht=scontent-lax7-1.xx&_nc_gid=Fo7gQtSpcBLmI_7duRM3pg&_nc_ss=7a3a8&oh=00_Af1piH6PI7AdCh8jkjAv6h6At4iu7BsPmkYpBmAPjrs_fg&oe=69DD41A0",
+				"order": 1,
+				"description": "Joni finds a treasure.",
+				"display": {
+					"width": "auto",
+					"height": "auto"
+				}
+			},
+			{
+				"src": "https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-6/481766832_1045936254230125_1347863612039623922_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s206x206_tt6&_nc_cat=100&ccb=1-7&_nc_sid=a934a8&_nc_ohc=dFYLay_CfM4Q7kNvwHNxMoq&_nc_oc=AdpvgDqUozUCMB_2LUBc9JQW8Ya3TtDcZAwFGS-ut_2dfTR-2MEVbSDM0yZj7q_IIZC4BE51LhPJtulQtTgSrr5A&_nc_zt=23&_nc_ht=scontent-lax3-2.xx&_nc_gid=Fo7gQtSpcBLmI_7duRM3pg&_nc_ss=7a3a8&oh=00_Af1jMxUdwEQ9yrdvAMQYTm_EqyJS7roN9VLMUNVal8P42Q&oe=69DD5BC3",
+				"order": 1,
+				"description": "Darla is like a kid on Christmas morning.",
+				"display": {
+					"width": "auto",
+					"height": "auto"
+				}
+			},
+			{
+				"src": "https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-6/481052209_1045936350896782_5784698797079820087_n.jpg?stp=c256.0.1536.1536a_cp6_dst-jpg_s206x206_tt6&_nc_cat=103&ccb=1-7&_nc_sid=a934a8&_nc_ohc=mHjZ7fFI3x8Q7kNvwEFF_5x&_nc_oc=AdoYZ4Pr7mkSmeeQRkDTqOxJLnC605vZMvVLUTqNXGpPdsQRpAs6VuGlCzklqIPnzke46SE67XihmjT93le6fhtB&_nc_zt=23&_nc_ht=scontent-lax3-2.xx&_nc_gid=Fo7gQtSpcBLmI_7duRM3pg&_nc_ss=7a3a8&oh=00_Af0rWhlk8WpmVVUF4AOrgiuXFpBXvmUExK6TqH7YMakckg&oe=69DD2D74",
+				"order": 1,
+				"description": "Mother-daughter bonding time.",
+				"display": {
+					"width": "auto",
+					"height": "auto"
+				}
+			},
+			{
+				"src": "https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-6/481072599_1045936334230117_668683689294942980_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s206x206_tt6&_nc_cat=107&ccb=1-7&_nc_sid=a934a8&_nc_ohc=xWZbx_zZPZEQ7kNvwHjcVdo&_nc_oc=AdpouFJMdmAxVTLBWPx3vIbETB9q7EkqPodFGk-C3uRS-_oeFfayOVnhp1n8c1QlYXjLfeKRHF8qdnuQtBnkevB5&_nc_zt=23&_nc_ht=scontent-lax3-2.xx&_nc_gid=Fo7gQtSpcBLmI_7duRM3pg&_nc_ss=7a3a8&oh=00_Af2RA77nJ3em9dycZQcdbyEQTQTi7Uu4-CJldI3XOyX1SA&oe=69DD4089",
+				"order": 1,
+				"description": "Jan is getting ready to sport the new style!",
+				"display": {
+					"width": "auto",
+					"height": "auto"
+				}
+			},
+			{
+				"src": "",
+				"order": 1,
+				"description": "Is Carol getting ready to see the Phantom of the Opera?",
+				"display": {
+					"width": "auto",
+					"height": "auto"
+				}
+			},
+		]
 	}
 ]
