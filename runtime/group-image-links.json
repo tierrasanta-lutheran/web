@@ -1,9 +1,6 @@
 [
 	{
 		"slug": "vacation-bible-school-crew",
-		"display": {
-			"numColumns": 3
-		},
 		"images": [
 			{
 				"src": "https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-6/481189870_1041167864706964_8782570648972456699_n.jpg?stp=c0.169.1536.1536a_cp6_dst-jpg_s206x206_tt6&_nc_cat=100&ccb=1-7&_nc_sid=5df8b4&_nc_ohc=V3jcMRbh7BsQ7kNvwH1cF50&_nc_oc=AdpBT3rRBARKvOtQ021MpkTDyUZky6CViAEQsqO_xuoRYDgTn3cnbKzC1mZ-gwT-llxYsIb47i_3gO8HR7fFGR2g&_nc_zt=23&_nc_ht=scontent-lax3-2.xx&_nc_gid=VzURQXy2ZYACK3MCyWGWMA&_nc_ss=7a3a8&oh=00_Af048SA3jGTNWFkrPTL5_IWyy8a3a273tXvnSv9gmIWXAQ&oe=69D79306",
@@ -12,7 +9,11 @@
 			{
 				"src": "https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-6/481075850_1041167811373636_4796767145118006591_n.jpg?stp=c256.0.1536.1536a_cp6_dst-jpg_s206x206_tt6&_nc_cat=100&ccb=1-7&_nc_sid=5df8b4&_nc_ohc=6V42hX54XfEQ7kNvwFmhCa-&_nc_oc=AdpP41l3qhZtbs3wb-jKv6UF0MLvg5_TC7GbSYQDdkE5sQdZrqwPES5znLsba_1AtzcdzZpygmwfLXxeo7XkOx1n&_nc_zt=23&_nc_ht=scontent-lax3-2.xx&_nc_gid=VzURQXy2ZYACK3MCyWGWMA&_nc_ss=7a3a8&oh=00_Af3k8Nfv4t6TAUrvBdhmu8FAlLAkyyrED9AS-F52LxTa1Q&oe=69D77CE5",
 				"order": 1,
-				"description": "Donna and the head astronaut leading the assembly."
+				"description": "Donna and the head astronaut leading the assembly.",
+				"display": {
+					"width": 400,
+					"height": 400
+				}
 			},
 			{
 				"src": "https://scontent-lax3-2.xx.fbcdn.net/v/t39.30808-6/480703915_1041042008052883_4078193713678981371_n.jpg?stp=c242.0.1564.1564a_cp6_dst-jpg_s206x206_tt6&_nc_cat=103&ccb=1-7&_nc_sid=5df8b4&_nc_ohc=6YtOOgUwGMUQ7kNvwGuvYvL&_nc_oc=AdqUxBe7tnJDmbavjk3rNXtax6_zYHHTx_VhbDzRQm1YnBKxOSs4ta_zoRv7COX2x5q3deql1vIV9suIcc_MO8MJ&_nc_zt=23&_nc_ht=scontent-lax3-2.xx&_nc_gid=VbIsBI5zGzQCE_-FfPq2QQ&_nc_ss=7a3a8&oh=00_Af29dT9OaGR62MJZYxqzOLmvpFS_szp84g1rku45W90D9g&oe=69D791B7",
