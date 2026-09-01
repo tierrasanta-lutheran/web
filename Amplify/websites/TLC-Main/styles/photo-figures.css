@@ -1,0 +1,103 @@
+figure {
+  display: inline-block;        /* shrink-wrap to image width */
+  border: 1px solid #ccc;       /* simple, clean border */
+  padding: 6px;                 /* space between border and content */
+  margin: 10px;                 /* avoid extra spacing in table cells */
+  text-align: center;           /* center caption under image */
+  background: #fafafa;          /* optional subtle background */
+  border: 1px solid #ddd;
+  padding: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+  border-radius: 4px;
+}
+
+figure img {
+  display: block;               /* removes inline whitespace gap */
+  width: 100%;                  /* keep natural image width */
+  height: auto;
+}
+
+figure img.master {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+figure figcaption {
+  font-size: 0.85rem;
+  color: #444;
+  margin-top: 4px;              /* spacing above caption */
+  word-wrap: break-word;        /* handles long text gracefully */
+}
+
+/*
+#group-info p {
+  margin-top: 0px;
+  margin-bottom: 15px;
+}
+*/
+p code em {
+  display: inline-block;
+  margin-left: clamp(5%, 25%, 25%);
+  margin-right: clamp(5%, 25%, 25%);
+}
+
+
+
+.glider-container {
+  /*height: 300px; *//* your fixed height */
+/*  overflow: hidden; */
+  overflow: visible; 
+  position: relative;
+}
+
+.glider-prev,
+.glider-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.glider .glider-slide {  
+  height: 100%;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}
+.glider .glider-slide .slide {
+  border: 1px solid #ccc;       /* simple, clean border */
+  padding: 6px;                 /* space between border and content */
+  margin: 10px;                 /* avoid extra spacing in table cells */
+  text-align: center;           /* center caption under image */
+  background: #fafafa;          /* optional subtle background */
+  border: 1px solid #ddd;
+  padding: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+  border-radius: 4px;
+}
+
+.glider .glider-slide .slide {
+  display: flex;
+  flex-direction: column;   /* stack image above caption */
+  justify-content: center;  /* vertical centering inside fixed-height slide */
+  align-items: center;      /* horizontal centering */
+  text-align: center;       /* center caption text */
+}
+.glider .glider-slide .slide img {
+  height: 500px;     /* scale proportionately based on height */
+  width: auto;      /* maintain aspect ratio */
+  object-fit: contain; /* or 'cover' if you prefer full-bleed */
+}
+.glider .glider-slide .slide .caption {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #444;
+  margin-top: 10px;             /* spacing above caption */
+  word-wrap: break-word;        /* handles long text gracefully */
+}
+
+
+.glider-container .glider-dots {
+  margin: 20px;
+}
