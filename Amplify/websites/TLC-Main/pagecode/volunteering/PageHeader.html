@@ -1,0 +1,41 @@
+<script>
+/**
+ * Sorts all Brizy Group List widgets on the page by the text content
+ * of each item's <h4><a> element.
+ *
+ * This function:
+ *  - Locates every `.brz-groupList__container` on the page.
+ *  - Extracts all `.brz-groupList__item` elements inside each container.
+ *  - Sorts items alphabetically (case-insensitive) based on the inner text
+ *    of the `<h4><a>` tag within each item.
+ *  - Re-appends the sorted items back into their respective containers,
+ *    mutating the DOM in place.
+ *
+ * DOM Requirements:
+ *  - Each group list item must contain: <h4><a>Title</a></h4>
+ *  - Containers must use the Brizy class `.brz-groupList__container`.
+ *
+ * @returns {void}
+ *    This function performs DOM mutations and does not return a value.
+ */
+function sortAllGroupLists() {
+  // Find every group list container on the page
+  const containers = document.querySelectorAll('.brz-groupList__container');
+
+  containers.forEach(container => {
+    // Get all group list items inside this container
+    const items = Array.from(container.querySelectorAll('.brz-groupList__item'));
+    
+    // Sort items by the <h4><a> inner text
+    const sortedItems = items.sort((a, b) => {
+      const aText = a.querySelector('h4 a')?.innerText.trim().toLowerCase() || '';
+      const bText = b.querySelector('h4 a')?.innerText.trim().toLowerCase() || '';
+
+      return aText.localeCompare(bText);
+    });
+
+    // Re-append in sorted order
+    sortedItems.forEach(item => container.appendChild(item));
+  });
+}
+</script>

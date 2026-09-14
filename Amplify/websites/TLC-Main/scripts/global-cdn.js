@@ -441,7 +441,8 @@ export async function AddBulletinLinksToSundayWorshipEventsAsync(linkText, event
  * }
  */
 export async function GetGroupImageLinksAsync(groupSlug) {
-    const url = ConstructUrlCDN("/manifests/group-image-links.json");
+    const fileName = "group-image-links.json";
+    const url = ConstructUrlCDN(`/manifests/${fileName}`);
 
     const groupImageLinks =
         await fetch(url)
@@ -450,20 +451,350 @@ export async function GetGroupImageLinksAsync(groupSlug) {
                 return data.find(group => group.slug === groupSlug) ?? null;
             })
             .catch(error => {
-                console.error("Error loading JSON:", error);
+                console.error("Error loading group image links (JSON):", fileName, error);
                 return null;
             });
 
     return groupImageLinks;
 }
 
+/**
+ * @summary
+ * Fetches and returns image-link metadata for a specific event slug.
+ * @description
+ * Loads the manifest file `/manifests/event-image-links.json` from the CDN,
+ * parses the JSON, and returns the event object whose `slug` matches the
+ * provided `eventSlug`. If the fetch fails or the slug is not found, `null`
+ * is returned.
+ * @author Anthony Bernard Colson (Tierrasanta Lutheran Church)
+ * @version 1.0.0
+ * @since 2026-09-05
+ * @changelog
+ *   - 2026-09-05: Initial creation.
+ *
+ * @async
+ * @function GetEventImageLinksAsync
+ * @param {string} eventSlug - The slug used to identify the event.
+ * @returns {Promise<GroupImageLinks|null>} The matching event object, or `null` if not found.
+ *
+ * @example
+ * const links = await GetEventImageLinksAsync("godly-play-sunday-school");
+ * if (links) {
+ *     console.log("Found event:", links.slug);
+ * }
+ */
+export async function GetEventImageLinksAsync(eventSlug) {
+    const fileName = "event-image-links.json";
+    const url = ConstructUrlCDN(`/manifests/${fileName}`);
+
+    const eventImageLinks =
+        await fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                return data.find(event => event.slug === eventSlug) ?? null;
+            })
+            .catch(error => {
+                console.error("Error loading event image links (JSON):", fileName, error);
+                return null;
+            });
+
+    return eventImageLinks;
+}
+
+/**
+ * Loads and returns the `media-links.json` manifest from the CDN.
+ *
+ * Fetches `/manifests/media-links.json`, parses the JSON, and returns the
+ * resulting array of media link entries. If the request fails or the JSON
+ * cannot be parsed, an empty object `{}` is returned instead of throwing.
+ *
+ * @async
+ * @function GetMediaLinksAsync
+ * @returns {Promise<MediaLinkEntry[]|Object>} An array of media link entries,
+ * or `[]` if the manifest could not be loaded.
+ *
+ * @typedef {Object} MediaLinkEntry
+ * @property {string[]} attributes - Tags used for filtering (e.g., "lent", "youth", "kids").
+ * @property {string} category - High-level grouping label (e.g., "Hey Pastor").
+ * @property {string} title - Human-readable title for the media item.
+ * @property {string} description - Short summary of the media item.
+ * @property {string} embed - Raw HTML embed code (typically an iframe).
+ *
+ * @example
+ * // Example manifest entry:
+ * // {
+ * //   "attributes": ["lent","youth","kids"],
+ * //   "category": "Hey Pastor",
+ * //   "title": "What is Lent?",
+ * //   "description": "A youth asks the pastor about the season of Lent.",
+ * //   "embed": "<iframe ...></iframe>"
+ * // }
+ *
+ * @example
+ * const links = await GetMediaLinksAsync();
+ * const lentVideos = links.filter(item => item.attributes.includes("lent"));
+ * 
+ * @see GetMediaLinksForAttribute
+ * @see GetMediaLinksForCategory
+ */
+export async function GetMediaLinksAsync() {
+    const fileName = "media-links.json";
+    const url = ConstructUrlCDN(`/manifests/${fileName}`);
+
+    const mediaLinks =
+        await fetch(url).then(response => {
+          return response.json();
+        })
+        .catch(error => {
+          console.error("Error loading media links (JSON):", fileName, error);
+          return [];
+        });
+  return mediaLinks;
+}  
+
+/**
+ * Filters a list of media link entries by one or more attribute tags.
+ *
+ * Performs case‑insensitive matching against the `attributes` array of each
+ * media link entry. If `attributes` is a string, the function returns all
+ * entries whose attribute list contains that single tag.
+ *
+ * If `attributes` is an array, the behavior depends on `options.forAllAttributes`:
+ *
+ * - `forAllAttributes: false` (default):
+ *     Returns entries whose attribute list contains *at least one* of the
+ *     requested tags (logical OR).
+ *
+ * - `forAllAttributes: true`:
+ *     Returns entries whose attribute list contains *every* requested tag
+ *     (logical AND).
+ *
+ * Before filtering, the function validates that `mediaLinks` is an array of
+ * objects. If validation fails, a console warning is issued and an empty
+ * array is returned.
+ *
+ * @function GetMediaLinksForAttribute
+ *
+ * @param {MediaLinkEntry[]} mediaLinks
+ *   The domain of media link entries to search. These may be the full array
+ *   returned from `GetMediaLinksAsync` or any filtered subset.
+ *
+ * @param {string|string[]} attributes
+ *   A single attribute (string) or an array of string attributes to match.
+ *
+ * @param {Object} [options=null]
+ * @param {boolean} [options.forAllAttributes=false]
+ *   When true, an item must contain *all* specified attributes to match.
+ *   When false, an item may match *any* of the specified attributes.
+ *
+ * @returns {MediaLinkEntry[]} A filtered array of media link entries whose
+ * `attributes` satisfy the requested matching rule. Returns `[]` if `mediaLinks`
+ * is invalid or if `attributes` is not a valid string or array of strings.
+ *
+ * @typedef {Object} MediaLinkEntry
+ * @property {string[]} attributes - Tags used for filtering (e.g., "lent", "youth", "kids").
+ * @property {string} category - High‑level grouping label (e.g., "Hey Pastor").
+ * @property {string} title - Human‑readable title for the media item.
+ * @property {string} description - Short summary of the media item.
+ * @property {string} embed - Raw HTML embed code (typically an iframe).
+ *
+ * @example
+ * // Match ANY attribute:
+ * const youthOrKids = GetMediaLinksForAttribute(mediaLinks, ["youth", "kids"]);
+ *
+ * @example
+ * // Match ALL attributes:
+ * const lentYouthKids = GetMediaLinksForAttribute(
+ *   mediaLinks,
+ *   ["lent", "youth", "kids"],
+ *   { forAllAttributes: true }
+ * );
+ *
+ * @see GetMediaLinksAsync
+ * @see GetMediaLinksForCategory
+ */
+export function GetMediaLinksForAttribute(mediaLinks, attributes, options = null) {
+
+  let links = [];
+
+  // Validate that mediaLinks is an array of objects
+  if (!Array.isArray(mediaLinks) ||
+      mediaLinks.some(item => typeof item !== "object" || item === null)) {
+    console.warn("GetMediaLinksForAttribute: 'mediaLinks' must be an array of objects.");
+    return links;
+  }
+
+  if (Array.isArray(attributes)) {
+    // We have an array of attribute strings.
+
+    const lcAttributes = attributes.map(a => a.toLowerCase());
+
+    if (options?.forAllAttributes) {
+      // Match ALL attributes (logical AND)
+      links = mediaLinks.filter(item => {
+        const itemAttrs = item.attributes.map(a => a.toLowerCase());
+        return lcAttributes.every(attr => itemAttrs.includes(attr));
+      });
+    }
+    else {
+      // Match ANY attribute (logical OR)
+      links = mediaLinks.filter(item => {
+        const itemAttrs = item.attributes.map(a => a.toLowerCase());
+        return itemAttrs.some(a => lcAttributes.includes(a));
+      });
+    }
+  }
+  else if (typeof attributes === "string"){
+    // We have a single attribute string.
+
+    const singleAttribute = attributes.toLowerCase();
+    links = mediaLinks.filter(item =>
+      item.attributes.map(a => a.toLowerCase()).includes(singleAttribute)
+    );
+  }
+  else {
+    console.warn("GetMediaLinksForAttribute: 'attributes' must be a valid string or an array of strings.");
+  }
+
+  return links;
+}
+
+/**
+ * Filters a list of media link entries by a single category value.
+ *
+ * Performs a case‑insensitive comparison against the `category` field of each
+ * media link entry. Only entries whose category matches the provided `category`
+ * string (after lowercasing) are returned.
+ *
+ * Before filtering, the function validates that `mediaLinks` is an array of
+ * objects. If validation fails, a console warning is issued and an empty array
+ * is returned.
+ *
+ * @function GetMediaLinksForCategory
+ *
+ * @param {MediaLinkEntry[]} mediaLinks
+ *   The domain of media link entries to search. These may be the full array
+ *   returned from `GetMediaLinksAsync` or any filtered subset.
+ *
+ * @param {string} category
+ *   The category name to match. Matching is case‑insensitive.
+ *
+ * @returns {MediaLinkEntry[]} A filtered array of media link entries whose
+ * `category` matches the requested value. Returns `[]` if `mediaLinks` is
+ * invalid or if `category` is not a valid string.
+ *
+ * @typedef {Object} MediaLinkEntry
+ * @property {string[]} attributes - Tags used for filtering (e.g., "lent", "youth", "kids").
+ * @property {string} category - High‑level grouping label (e.g., "Hey Pastor").
+ * @property {string} title - Human‑readable title for the media item.
+ * @property {string} description - Short summary of the media item.
+ * @property {string} embed - Raw HTML embed code (typically an iframe).
+ *
+ * @example
+ * // Filter by category:
+ * const heyPastorItems = GetMediaLinksForCategory(mediaLinks, "Hey Pastor");
+ *
+ * @see GetMediaLinksAsync
+ * @see GetMediaLinksForAttribute
+ */
+export function GetMediaLinksForCategory(mediaLinks, category) {
+
+  let links = [];
+
+  // Validate that mediaLinks is an array of objects
+  if (!Array.isArray(mediaLinks) ||
+      mediaLinks.some(item => typeof item !== "object" || item === null)) {
+    console.warn("GetMediaLinksForCategory: 'mediaLinks' must be an array of objects.");
+    return links;
+  }
+
+  if (typeof category === "string"){
+    category = category.toLowerCase();
+    links = mediaLinks.filter(item => item.category.toLowerCase() === category);
+  }
+  else {
+    console.warn("GetMediaLinksForCategory: 'category' must be a valid string.");
+  }
+
+  return links;
+}
+
+/**
+ * Extracts and optionally hides category labels from Brizy Event List or
+ * Event Detail markup. Categories are read from the second <span> inside
+ * each `.brz-ministryBrands__item--meta-category` element, where Brizy
+ * stores a comma‑delimited list of category names.
+ *
+ * If `options.hideCategories` is true (default), the category block is
+ * visually hidden by setting `display: none` on each matched element.
+ *
+ * @function GetEventCategories
+ *
+ * @param {HTMLElement|null} [event=null]
+ *   Optional root element to search within. If omitted, `document` is used.
+ *   This allows the function to operate on isolated widget containers or
+ *   full pages.
+ *
+ * @param {Object} [options]
+ * @param {boolean} [options.hideCategories=true]
+ *   Whether to hide the category block in the DOM after extracting values.
+ *
+ * @returns {string[]} A de‑duplicated array of category names found across
+ * all matched event items.
+ *
+ * @example
+ * // Extract categories from the entire page:
+ * const categories = GetEventCategories();
+ *
+ * @example
+ * // Extract categories from a specific event widget:
+ * const widget = document.querySelector("#event-list");
+ * const categories = GetEventCategories(widget, { hideCategories: false });
+ *
+ * @example
+ * // Typical Brizy markup structure:
+ * // <h6 class="brz-ministryBrands__item--meta-category">
+ * //   <span>Category Label</span>
+ * //   <span>Type, Adults, Ministry, Fellowship</span>
+ * // </h6>
+ */
+export function GetEventCategories(event = null,
+                                   options = {
+                                       hideCategories: true
+                                   }) {
+    // Select all event date elements
+    const categoryBlocks = (event ?? document).querySelectorAll(
+        ".brz-ministryBrands__item--meta-category"
+    );
+  
+    let categories = [];
+    categoryBlocks.forEach(h6Category => {
+        const spanCategories = h6Category.getElementsByTagName("span")[1]; // Second <span> slement
+		categories.push(...spanCategories.textContent.split(", "));
+      
+        // Turn off Category display
+        if (options?.hideCategories ?? true) {
+          h6Category.style.display = "none";
+        }
+    });
+
+    const uniqueCategories = [...new Set(categories)];
+    return uniqueCategories;
+}
+
+
 // --- Global fallback for non-module usage ---
 if (typeof window !== "undefined") {
     window.GlobalCdn = {
         ConstructUrlCDN,
-        GetBulletinUrlAsync: GetBulletinUrlAsync,
+        GetBulletinUrlAsync,
         AddBulletinLinkAsync,
         AddBulletinLinksToSundayWorshipEventsAsync,
-        GetGroupImageLinksAsync
+        GetGroupImageLinksAsync,
+        GetEventImageLinksAsync,
+        GetMediaLinksAsync,
+        GetMediaLinksForAttribute,
+        GetMediaLinksForCategory,
+        GetEventCategories
     };
 }

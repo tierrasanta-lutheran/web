@@ -1,0 +1,70 @@
+[
+	{
+		"slug": "godly-play-sunday-school",
+		"base": {
+			"image": {
+				"src": "/media/Events/GodlyPlay/Godly_Play_1.jpg"
+			}
+		},
+		"display": {
+			"numColumns": 3,
+			"type": "album"
+		},
+		"images": [
+			{
+				"src": "/media/Events/GodlyPlay/Godly_Play_2.jpg",
+				"order": 1,
+				"description": "",
+				"display": {
+					"width": "auto",
+					"height": "auto"
+				}
+			},
+			{
+				"src": "/media/Events/GodlyPlay/Godly_Play_3.jpg",
+				"order": 1,
+				"description": "",
+				"display": {
+					"width": "auto",
+					"height": "auto"
+				}
+			},
+			{
+				"src": "/media/Events/GodlyPlay/Godly_Play_4.jpg",
+				"order": 1,
+				"description": "",
+				"display": {
+					"width": "auto",
+					"height": "auto"
+				}
+			},
+			{
+				"src": "/media/Events/GodlyPlay/Godly_Play_5.jpg",
+				"order": 1,
+				"description": "",
+				"display": {
+					"width": "auto",
+					"height": "auto"
+				}
+			},
+			{
+				"src": "/media/Events/GodlyPlay/Godly_Play_6.jpg",
+				"order": 1,
+				"description": "",
+				"display": {
+					"width": "auto",
+					"height": "auto"
+				}
+			},
+			{
+				"src": "/media/Events/GodlyPlay/Godly_Play_7.jpg",
+				"order": 2,
+				"description": "",
+				"display": {
+					"width": "auto",
+					"height": "auto"
+				}
+			}
+		]
+	}
+]

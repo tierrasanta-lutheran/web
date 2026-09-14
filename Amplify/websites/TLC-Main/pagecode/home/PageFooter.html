@@ -1,0 +1,75 @@
+<script>
+/**
+ * Initializes bulletin-link injection for Brizy Event List widgets once the DOM is fully loaded.
+ *
+ * This workflow:
+ *  - Locates the "7‑day events" widget (or falls back to `document` if not found).
+ *  - Iterates through all `.brz-eventList__item` elements rendered by Brizy.
+ *  - Extracts event metadata using BrizyHelper:
+ *      • `GetEventDateParts(event)` → returns year, month, day, service type
+ *      • `GetEventStartTime(event)` → returns { time, meridiem }
+ *  - Filters events to include ONLY worship services:
+ *      • contemporary
+ *      • traditional
+ *      • unity
+ *    (Other items—such as Sunday service descriptions—are skipped.)
+ *  - Validates the event date and constructs a normalized YYYY‑MM‑DD string.
+ *  - Calls `GlobalCdn.AddBulletinLinkAsync(...)` to append a “Read the Bulletin”
+ *    link to each qualifying event.
+ *
+ * DOM Requirements:
+ *  - Events must contain an anchor with an `mc-slug` query parameter.
+ *  - BrizyHelper and GlobalCdn must be available on `window`.
+ *
+ * Logging:
+ *  - Warns when events lack slugs, have invalid dates, or missing start times.
+ *  - Debug‑logs event start times and non‑worship events.
+ *
+ * @returns {Promise<void>}
+ *    This function runs asynchronously due to `AddBulletinLinkAsync` calls.
+ *    It mutates the DOM directly and returns no value.
+ */
+document.addEventListener("DOMContentLoaded", async () => {
+    // Target a specific Event List widget
+    const widget = document.querySelector("#events-7-days") || document;
+    const events = document.querySelectorAll(".brz-eventList__item");
+
+
+    for (const event of events) {
+        const link = event.querySelector("a[href*='mc-slug']");
+        if (!link) {
+            console.warn("Event does not appear to be associated with a slug:", event);
+            continue;
+        }
+
+        const {
+          result, message,
+          year, month, day,
+          service
+        } = window.BrizyHelper.GetEventDateParts(event);
+
+        const eventStart = window.BrizyHelper.GetEventStartTime(event);
+        if (!eventStart) {
+            console.warn("Could not get event time:", event);
+            continue;
+        }
+
+        console.debug("Event Time:", eventStart);
+
+        if (!["contemporary","traditional","unity"].includes(service)) {
+            console.debug("Event is does not appear to be a contemporary, traditional or unity service.", event);
+            continue; // This is probably the Sunday service decription and not a worship service.
+        }
+      
+        const dateStr = `${year}-${month}-${day}`;
+
+        const dateObj = new Date(dateStr);
+        if (isNaN(dateObj)) {
+            console.warn("Invalid Event Date:", dateStr);
+            continue;
+        }
+
+        await window.GlobalCdn.AddBulletinLinkAsync("Read the Bulletin", event, year, month, day, eventStart.time, eventStart.meridiem);
+    }
+});
+</script>

@@ -1,0 +1,109 @@
+<script>
+/**
+ * Pre-processes council position items (executives or directors) inside Brizy groupList containers.
+ *
+ * This function:
+ *  - Selects either the Executive or Director container based on the `executives` flag.
+ *  - Hides the category metadata element for each item.
+ *  - Filters items based on category rules:
+ *      • Removes items tagged "Committee".
+ *      • If `executives` is true: keeps only items tagged "Council Executive".
+ *      • If `executives` is false: keeps only non-executive council directors.
+ *  - Sorts the remaining items alphabetically by their <h4> title text.
+ *  - Reinserts the sorted items back into the container.
+ *
+ * @param {boolean} [executives=false]
+ *        Whether to process Council Executives (`true`) or Council Directors (`false`).
+ *
+ * @returns {void}
+ *        This function mutates the DOM directly and returns nothing.
+ */
+function PreProcessCouncilPositions(executives = false) {
+    const selector = executives ? 
+          				"#council-execs .brz-groupList__container" : 
+    					"#council-directors .brz-groupList__container";
+    const container = document.querySelector(selector);
+
+    if (!container) return;
+
+    // Collect all items
+    const items = Array.from(container.querySelectorAll(".brz-groupList__item"));
+
+    // Filter OUT items where the category span contains "Committee"
+    const filtered = items.filter(item => {
+        const category = item.querySelector(".brz-ministryBrands__item--meta-category");
+        const categorySpan = category?.querySelector("span:last-child");
+      
+        if (category) { category.style.display = "none"; }
+        if (!categorySpan) return true;
+
+        const categories = categorySpan.textContent
+            .split(",")
+            .map(s => s.trim());
+
+        const execFilter = categories.includes("Council Executive");
+        return !categories.includes("Committee") && (executives ? execFilter : !execFilter);
+    });
+
+    // Sort remaining items by the H4 title text
+    filtered.sort((a, b) => {
+        const titleA = a.querySelector("h4")?.textContent.trim().toLowerCase() || "";
+        const titleB = b.querySelector("h4")?.textContent.trim().toLowerCase() || "";
+        return titleA.localeCompare(titleB);
+    });
+
+    // Clear container and reinsert sorted items
+    container.innerHTML = "";
+    filtered.forEach(item => container.appendChild(item));
+}
+
+/**
+ * Pre-processes Council Support Committee items inside the Brizy groupList container.
+ *
+ * This function:
+ *  - Selects the Support Committees container.
+ *  - Hides the category metadata element for each item.
+ *  - Filters items to include ONLY those tagged with BOTH:
+ *      • "Committee"
+ *      • "Council"
+ *  - Sorts the remaining items alphabetically by their <h4> title text.
+ *  - Reinserts the sorted items back into the container.
+ *
+ * @returns {void}
+ *        This function mutates the DOM directly and returns nothing.
+ */
+function PreProcessCouncilCommittees() {
+    const container = document.querySelector("#council-support-committees .brz-groupList__container");
+
+    if (!container) return;
+
+    // Collect all items
+    const items = Array.from(container.querySelectorAll(".brz-groupList__item"));
+
+    // Filter OUT items where the category span contains "Committee"
+    const filtered = items.filter(item => {
+        const category = item.querySelector(".brz-ministryBrands__item--meta-category");
+        const categorySpan = category?.querySelector("span:last-child");
+      
+        if (category) { category.style.display = "none"; }
+        if (!categorySpan) return true;
+
+        const categories = categorySpan.textContent
+            .split(",")
+            .map(s => s.trim());
+
+        return categories.includes("Committee") && categories.includes("Council");
+    });
+
+    // Sort remaining items by the H4 title text
+    filtered.sort((a, b) => {
+        const titleA = a.querySelector("h4")?.textContent.trim().toLowerCase() || "";
+        const titleB = b.querySelector("h4")?.textContent.trim().toLowerCase() || "";
+        return titleA.localeCompare(titleB);
+    });
+
+    // Clear container and reinsert sorted items
+    container.innerHTML = "";
+    filtered.forEach(item => container.appendChild(item));
+}
+</script>

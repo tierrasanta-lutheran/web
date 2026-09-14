@@ -60,10 +60,15 @@ export default {
     /** @type {Record<string,string>} Optional shorthand → folder short-cut mappings */
     const folderMap = {
       manifests: "/.manifests/",
-      LiveNativity: "/media/Groups/LiveNativity/",
-      VBS: "/media/Groups/VBS/",
-      RummageSale: "/media/Groups/RummageSale/",
+      LiveNativity: "/media/Groups/Ministry/LiveNativity/",
+      VBS: "/media/Groups/Education/VBS/",
+      RummageSale: "/media/Groups/Ministry/RummageSale/",
+      Committees: "/media/Groups/Committees/",
+      Council: "/media/Groups/Council/",
       Confirmation: "/media/Events/Confirmation/",
+      Education: "/media/Groups/Education/",
+      Operations: "/media/Groups/Operations/",
+      Worship: "/media/Groups/Worship/",
       bulletins: "/docs/bulletins/"
       // Add more folder short-cut mappings here as needed
     };

@@ -272,6 +272,36 @@ export function GetNextSunday() {
     return new Date(year, month, day); // midnight local time, no offset info
 }
 
+/**
+ * Determines whether a Brizy/Amplify event time string represents an
+ * all‑day event using the “fake all‑day” time range format.
+ *
+ * Amplify does not always mark all‑day events with the literal text
+ * “All Day”. Instead, events created from 12:00 AM to 11:59 PM are
+ * rendered as:
+ *
+ *     "12:00 am - 11:59 pm"
+ *
+ * This helper normalizes whitespace and performs a strict comparison
+ * against that known pattern.
+ *
+ * @function IsAllDayTimeRange
+ * @param {string|null|undefined} eventTime
+ *   The raw time string extracted from `.brz-eventDetail__item--meta--date`.
+ *
+ * @returns {boolean}
+ *   `true` if the time range matches the all‑day pattern,
+ *   otherwise `false`.
+ *
+ * @example
+ * IsAllDayTimeRange("12:00 am - 11:59 pm");   // true
+ * IsAllDayTimeRange("9:00 am - 10:00 am");    // false
+ * IsAllDayTimeRange(null);                    // false
+ */
+function IsAllDayTimeRange(eventTime) {
+  return eventTime?.trim() === "12:00 am - 11:59 pm";
+}
+
 
 // --- Global fallback for non-module usage ---
 if (typeof window !== "undefined") {
@@ -279,7 +309,8 @@ if (typeof window !== "undefined") {
         IsSameCalendarDay,
         GetEventDateParts,
         GetEventStartTime,
-        GetNextSunday
+        GetNextSunday,
+        IsAllDayTimeRange
     };
 }
 

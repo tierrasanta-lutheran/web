@@ -1,0 +1,93 @@
+<script>
+/**
+ * Initializes the Group Detail page once the DOM is fully loaded.
+ *
+ * This workflow:
+ *  - Hides the “media-links” and “group-tabs” sections until group data is evaluated.
+ *  - Extracts the group slug from the URL using `BrizyHelper.GetSlugFromUrl()`.
+ *  - Fetches group image metadata from the CDN via `GlobalCdn.GetGroupImageLinksAsync()`.
+ *  - Determines whether a “master group image” exists for the group.
+ *      • If no master image exists:
+ *          – hides the group image container
+ *          – expands the group info container to full width
+ *      • If a master image exists:
+ *          – injects the image into the display container
+ *  - Builds additional photo displays using `BrizyHelper.BuildPhotoDisplaysAsync("group-tabs")`.
+ *
+ * DOM Requirements:
+ *  - #media-links, #group-tabs, #group-info, #group-image must exist.
+ *  - BrizyHelper and GlobalCdn must be available on `window`.
+ *
+ * @returns {Promise<void>}
+ *    Runs asynchronously due to CDN calls and photo display building.
+ *    Mutates the DOM directly and returns no value.
+ */
+document.addEventListener("DOMContentLoaded", async function () {
+	const sectionImages = document.getElementById("media-links");
+	sectionImages.style.display = "none"; // Hide Image Section
+  
+    const groupTabs = document.getElementById("group-tabs");
+	groupTabs.style.display = "none"; // Hide Group Tabs
+  
+    const urlSlug = window.BrizyHelper.GetSlugFromUrl();
+    const groupData = await window.GlobalCdn.GetGroupImageLinksAsync(urlSlug);
+    const masterGroupImage = groupData?.base?.image ?? null;
+  
+    const divGroupInfo = document.getElementById("group-info");
+    const divGroupImage = document.getElementById("group-image");
+  
+    /**
+     * Hides the group image container entirely.
+     *
+     * @returns {void}
+     */
+    function HideGroupImage() {
+        divGroupImage.style.display = "none";
+    }
+
+    /**
+     * Expands the group info container to full width when no image is present.
+     *
+     * @returns {void}
+     */
+    function ExpandGroupInfo() {
+        divGroupInfo.style.maxWidth = "100%";
+    }
+
+    /**
+     * Injects the master group image into the group image display container.
+     *
+     * @param {{ src: string } | null} image
+     *        The master image metadata object returned from the CDN.
+     *        Must contain a `src` property. If null, nothing is added.
+     *
+     * @returns {void}
+     */
+    function AddMasterGroupImageToDisplay(image) {
+        if (!image) {
+            return;
+        }
+
+        const figure = document.createElement("figure");
+        const img = document.createElement("img");
+        img.id = "master";
+        img.style.paddingTop = "5px";
+        img.style.paddingBottom = "5px";
+        img.src = window.GlobalCdn.ConstructUrlCDN(image.src);
+
+        const childDiv = divGroupImage.querySelector(':scope > div.brz-column__items');
+        figure.appendChild(img);
+        childDiv.appendChild(figure);
+    }
+    
+    if (!masterGroupImage) {
+        HideGroupImage();
+        ExpandGroupInfo();
+    }
+    else {
+        AddMasterGroupImageToDisplay(masterGroupImage);
+    }
+  
+    await window.BrizyHelper.BuildPhotoDisplaysAsync("group-tabs");
+});
+</script>

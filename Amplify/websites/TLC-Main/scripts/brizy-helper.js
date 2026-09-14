@@ -17,7 +17,7 @@
  *   - 2026-08-31: Initial creation of Brizy helper utilities.
  */
 import {InitCarouselAsync} from "./glider-helper.js";
-import {GetGroupImageLinksAsync, ConstructUrlCDN} from "./global-cdn.js";
+import {GetGroupImageLinksAsync, GetEventImageLinksAsync, ConstructUrlCDN} from "./global-cdn.js";
 
 /**
  * @summary Gets the webpage slug identifier from the url.
@@ -808,6 +808,12 @@ export function BuildCarousel(slides, options = null) {
  * @async
  * @function BuildPhotoDisplaysAsync
  * @param {string} idGroupTabs - The DOM element ID of the Brizy tab container.
+ * @param {string} source - The source of the images.
+ * Valid values:
+ * 
+ *   groups - Gets group images
+ * 
+ *   events - Gets event images
  * @returns {Promise<void>} Resolves when all photo displays have been rendered.
  *
  * @typedef {Object} GroupData
@@ -845,7 +851,7 @@ export function BuildCarousel(slides, options = null) {
  * @example
  * await BuildPhotoDisplaysAsync("group-tabs");
  */
-export async function BuildPhotoDisplaysAsync(idGroupTabs) {
+export async function BuildPhotoDisplaysAsync(idGroupTabs, source = "groups") {
     const DISPLAY_TYPE_ALBUM = "album";
     const DISPLAY_TYPE_CAROUSEL = "carousel";
     const DISPLAY_TYPE_DEFAULT = DISPLAY_TYPE_ALBUM;
@@ -854,7 +860,22 @@ export async function BuildPhotoDisplaysAsync(idGroupTabs) {
     const sectionImages = document.getElementById("media-links");
 
     const urlSlug = GetSlugFromUrl();
-    const groupData = await GetGroupImageLinksAsync(urlSlug);
+
+    const ImageRetrieverAsync = (() => {
+        switch(source) {
+            case "groups":
+                return GetGroupImageLinksAsync;
+
+            case "events":
+                return GetEventImageLinksAsync;
+
+            default:
+                console.warn(`BuildPhotoDisplaysAsync(): Bad source parameter '${source}'.  Defaulting to 'groups'.`);
+                return GetGroupImageLinksAsync;
+        }
+    })();
+
+    const groupData = await ImageRetrieverAsync(urlSlug);
     const masterGroupImage = groupData?.base?.image ?? null;
     const haveImageGroups = groupData?.base?.grouped ?? false;
 
@@ -894,7 +915,14 @@ export async function BuildPhotoDisplaysAsync(idGroupTabs) {
 
     if (!groupData) return;
 
-    ShowSectionImages();
+    if ((groupData.images ?? []).length === 0 && !haveImageGroups) {
+        console.debug("Hiding section images.");
+        HideSectionImages();
+    }
+    else {
+        console.debug("Showing section images.");
+        ShowSectionImages();
+    }
 
     /**
      * Builds an array of image groups based on groupData.
@@ -916,7 +944,7 @@ export async function BuildPhotoDisplaysAsync(idGroupTabs) {
             });
         } else {
             const singleGroup = {
-                images: groupData?.images.sort((a,b) => (a.order ?? 0) - (b.order ?? 0)) ?? null,
+                images: groupData?.images?.sort((a,b) => (a.order ?? 0) - (b.order ?? 0)) ?? null,
                 display: groupData?.display ?? null
             };
             imageGroups.push(singleGroup);
@@ -976,7 +1004,7 @@ export async function BuildPhotoDisplaysAsync(idGroupTabs) {
 
                 const tbl = document.createElement("table");
 
-                if (groupImages.length === 0 || groupImages.every(image => image.display?.width === "auto")) {
+                if ((groupImages?.length ?? 0) === 0 || groupImages?.every(image => image.display?.width === "auto")) {
                     tbl.style.width = "90%";
                     tbl.style.margin = "0 auto";
                 } else {
@@ -1064,7 +1092,7 @@ export async function BuildPhotoDisplaysAsync(idGroupTabs) {
 
             const { wrapper, table } = CreateImagesTable();
 
-            for (let i = 0; i < groupImages.length; i += displayInfo.numColumns) {
+            for (let i = 0; i < (groupImages?.length ?? 0); i += displayInfo.numColumns) {
                 const chunk = groupImages.slice(i, i + displayInfo.numColumns);
                 AddRow(table, chunk);
             }

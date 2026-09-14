@@ -1,0 +1,7 @@
+/* Event List – show full image instead of zoomed/cropped */
+.brz-eventList__item img {
+    object-fit: contain !important;
+    width: 100% !important;
+    height: auto !important;
+    background: #0000; /* optional: removes background fill */
+}

@@ -1,0 +1,324 @@
+[
+	{
+		"slug": "fellowship-committee",
+		"base": {
+			"image": {
+				"src": "/Committees/Fellowship/FellowshipCommittee.png"
+			},
+			"grouped": false
+		}
+	},
+	{
+		"slug": "vacation-bible-school-crew",
+		"base": {
+			"image": {
+				"src": "/VBS/2023/481296483_1041168101373607_6988562183022217746_n.jpg"
+			},
+			"grouped": true
+		},
+		"groups": [
+			{
+				"groupName": "2023",
+				"display": {
+					"numColumns": 3,
+					"type": "album",
+					"icon": "calendar-1"
+				},
+				"images": [
+					{
+						"src": "/VBS/2023/481075850_1041167811373636_4796767145118006591_n.jpg",
+						"order": 1,
+						"description": "Donna and the head astronaut leading the assembly.",
+						"display": {
+							"width": "auto",
+							"height": "auto"
+						}
+					},
+					{
+						"src": "/VBS/2023/480703915_1041042008052883_4078193713678981371_n.jpg",
+						"order": 1,
+						"description": "Crew leaders waiting for the kiddos."
+					},
+					{
+						"src": "/VBS/2023/481208781_1041042068052877_1988150243519032587_n.jpg",
+						"order": 1,
+						"description": "Morning sign-in."
+					},
+					{
+						"src": "/VBS/2023/481075419_1041042024719548_7313820848010508084_n.jpg",
+						"order": 1,
+						"description": "Morning sign-in."
+					},
+					{
+						"src": "/VBS/2023/481071191_1041042014719549_3758065353184606496_n.jpg",
+						"order": 1,
+						"description": "Pete manning the audio/visual."
+					},
+					{
+						"src": "/VBS/2023/481263083_1041042081386209_787139158883019127_n.jpg",
+						"order": 1,
+						"description": "Everyone gets a name tag."
+					},
+					{
+						"src": "/VBS/2023/480716441_1041041984719552_4298312789089019992_n.jpg",
+						"order": 1,
+						"description": "Pam gets the refreshments ready for hungry students."
+					},
+					{
+						"src": "/VBS/2023/480703273_1041042191386198_8544328660520694845_n.jpg",
+						"order": 1,
+						"description": "Bernie teaches a Bible point."
+					},
+					{
+						"src": "/VBS/2023/480564317_1041168111373606_365249457483318536_n.jpg",
+						"order": 1,
+						"description": "Rick lets a student talk, experience and learn."
+					},
+					{
+						"src": "/VBS/2023/480694654_1041047514718999_4243568800065766707_n.jpg",
+						"order": 100,
+						"description": "Happy students!"
+					},
+					{
+						"src": "/VBS/2023/480685750_1041047498052334_4627728983772828976_n.jpg",
+						"order": 100,
+						"description": "Daniella gets secured and wrapped in God's word so she does't drift off."
+					},
+					{
+						"src": "/VBS/2023/480563980_1041167958040288_3463558126791959704_n.jpg",
+						"order": 100,
+						"description": "Kids at assembly."
+					},
+					{
+						"src": "/VBS/2023/480690601_1041047428052341_556519618014193949_n.jpg",
+						"order": 100,
+						"description": "Happy student!"
+					},
+					{
+						"src": "/VBS/2023/480501536_1041047474719003_1603667273655405798_n.jpg",
+						"order": 100,
+						"description": "Happy student!"
+					},
+					{
+						"src": "/VBS/2023/480685264_1041047194719031_3059112184448817187_n.jpg",
+						"order": 100,
+						"description": "Kathy helps make VBS fun!"
+					},
+					{
+						"src": "/VBS/2023/481258810_1041047408052343_8412141815168692670_n.jpg",
+						"order": 100,
+						"description": "Learning about the Bible."
+					},
+					{
+						"src": "/VBS/2023/480442657_1041047391385678_665290964985771455_n.jpg",
+						"order": 100,
+						"description": "Older kids helping the younger kids."
+					},
+					{
+						"src": "/VBS/2023/481010965_1041047411385676_6584249283590650157_n.jpg",
+						"order": 100,
+						"description": "Older kids helping the younger kids."
+					},
+					{
+						"src": "/VBS/2023/481044316_1041047214719029_397111488080034163_n.jpg",
+						"order": 100,
+						"description": "Kyra helps run an outdoors activity."
+					},
+					{
+						"src": "/VBS/2023/480925031_1041047424719008_54411783012563214_n.jpg",
+						"order": 100,
+						"description": "Christian helps run an outdoors activity."
+					},
+					{
+						"src": "/VBS/2023/480669806_1041047438052340_3944608192063210779_n.jpg",
+						"order": 100,
+						"description": "Olivia helps run an outdoors activity."
+					},
+					{
+						"src": "/VBS/2022/487814576_9643593679056558_2157073528694882289_n.jpg",
+						"order": 1,
+						"description": "Mark, Tim and Pete take a breather."
+					},
+					{
+						"src": "/VBS/2022/487770936_9643593705723222_1171491582649204182_n.jpg",
+						"order": 1,
+						"description": "Family men of 3 generations supervising outdoor play."
+					},
+					{
+						"src": "/VBS/2022/487823858_9643593692389890_285828724923816056_n.jpg",
+						"order": 1,
+						"description": "Bart and Sheri team up as husband and wife to teach a Bible lesson."
+					}
+
+				]
+			},
+			{
+				"groupName": "2022",
+				"display": {
+					"numColumns": 3,
+					"type": "carousel",
+					"icon": "calendar-1"
+				},
+				"images": [
+					{
+						"src": "/VBS/2022/487823834_9643583412390918_7202032524762609888_n.jpg",
+						"order": 1,
+						"description": "Getting some treats!",
+						"display": {
+							"width": "auto",
+							"height": "auto"
+						}
+					},
+					{
+						"src": "/VBS/2022/487823858_9643593692389890_285828724923816056_n.jpg",
+						"order": 1,
+						"description": "Bart and Sherry with Sticky Scriptures."
+					},
+					{
+						"src": "/VBS/2022/487825559_9643607275721865_5961864935454143827_n.jpg",
+						"order": 1,
+						"description": "Pastor pharoe."
+					},
+					{
+						"src": "/VBS/2022/487827531_9643607339055192_4636512694262553086_n.jpg",
+						"order": 1,
+						"description": "Peace-out everyone!"
+					},
+					{
+						"src": "/VBS/2022/487854224_9643583112390948_1860357152661772177_n.jpg",
+						"order": 1,
+						"description": "Donna leads the assembly."
+					},
+					{
+						"src": "/VBS/2022/488007901_9643593695723223_4830223562058840487_n.jpg",
+						"order": 1,
+						"description": "Pam mans the cantina."
+					},
+					{
+						"src": "/VBS/2022/488248357_9649734325109160_7792651880235232164_n.jpg",
+						"order": 1,
+						"description": "All ths kids are bright today."
+					},
+					{
+						"src": "/VBS/2022/488258525_9649748841774375_7428030320056675055_n.jpg",
+						"order": 1,
+						"description": "Outdoor fun in full swing."
+					},
+					{
+						"src": "/VBS/2022/488272074_9649766571772602_2463179524790803947_n.jpg",
+						"order": 1,
+						"description": "Practicing for the concert."
+					},
+					{
+						"src": "/VBS/2022/488411053_9643583335724259_408120380306792967_n.jpg",
+						"order": 100,
+						"description": "Bernie leads Bible Adventures."
+					},
+					{
+						"src": "/VBS/2022/488573879_9649748658441060_4519855556589426007_n.jpg",
+						"order": 100,
+						"description": "Rachel having fun with the guys."
+					},
+					{
+						"src": "/VBS/2022/488647701_9649748595107733_6971664361158439680_n.jpg",
+						"order": 100,
+						"description": "Hula hoop and water fun keep the kids fresh and focused."
+					},
+					{
+						"src": "/VBS/2022/488375116_9649766598439266_7607596674669380574_n.jpg",
+						"order": 100,
+						"description": "VBS volunteers relaxing after the week finished."
+					},
+					{
+						"src": "/VBS/2022/488480304_9649766638439262_8022583594210272576_n.jpg",
+						"order": 1,
+						"description": "Kid volunteers like to chill with the adults, too."
+					},
+					{
+						"src": "/VBS/2022/488867339_9649766538439272_3425883611671938050_n.jpg",
+						"order": 100,
+						"description": "Thw VBS crew."
+					}
+
+				]
+			}
+		]
+	},
+	{
+		"slug": "rummage-sale-crew",
+		"base": {
+			"image": {
+				"src": "/RummageSale/2023/481276158_1045279904295760_8062954099042546527_n.jpg"
+			}
+		},
+		"display": {
+			"numColumns": 3,
+			"type": "album"
+		},
+		"images": [
+			{
+				"src": "/RummageSale/2023/481027667_1045936347563449_3715057747596002398_n.jpg",
+				"order": 1,
+				"description": "Ann and Brenda getting ready for Christmas!",
+				"display": {
+					"width": "auto",
+					"height": "auto"
+				}
+			},
+			{
+				"src": "/RummageSale/2023/481983374_1045936257563458_3777894782872245032_n.jpg",
+				"order": 1,
+				"description": "Ginny finds a stein mug!",
+				"display": {
+					"width": "auto",
+					"height": "auto"
+				}
+			},
+			{
+				"src": "/RummageSale/2023/481273807_1045936260896791_6767552254209934740_n.jpg",
+				"order": 1,
+				"description": "Joni finds a treasure.",
+				"display": {
+					"width": "auto",
+					"height": "auto"
+				}
+			},
+			{
+				"src": "/RummageSale/2023/481766832_1045936254230125_1347863612039623922_n.jpg",
+				"order": 1,
+				"description": "Darla is like a kid on Christmas morning.",
+				"display": {
+					"width": "auto",
+					"height": "auto"
+				}
+			},
+			{
+				"src": "/RummageSale/2023/481072599_1045936334230117_668683689294942980_n.jpg",
+				"order": 1,
+				"description": "Jan is getting ready to sport the new style!",
+				"display": {
+					"width": "auto",
+					"height": "auto"
+				}
+			},
+			{
+				"src": "/RummageSale/2023/481052209_1045936350896782_5784698797079820087_n.jpg",
+				"order": 2,
+				"description": "Mother-daughter bonding time.",
+				"display": {
+					"width": "auto",
+					"height": "auto"
+				}
+			},
+			{
+				"src": "/RummageSale/2023/480810419_1045936264230124_8538885081513522719_n.jpg",
+				"order": 1,
+				"description": "Is Carol getting ready to see the Phantom of the Opera?",
+				"display": {
+					"width": "auto",
+					"height": "auto"
+				}
+			}
+		]
+	}
+]
